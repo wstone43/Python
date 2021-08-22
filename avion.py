@@ -1,3 +1,4 @@
+
 import os 
 import sys
 
@@ -128,5 +129,4 @@ minutes = (Time*60) % 60
 print("______________________________________________________")
 print(" ")
 print(("your estimated flight time is ") + (("%d:%02d" % (hours, minutes))))
-print(" ")
 print(" ")
