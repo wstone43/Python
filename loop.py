@@ -28,4 +28,4 @@ while a == "y" or a == "Y":
         break
     
 
-root.mainloop()
+test='test'
