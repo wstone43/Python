@@ -48,4 +48,3 @@ plt.plot(y)
 plt.plot(tangent1)
 plt.show()
 
-test = 'testtesttest'
