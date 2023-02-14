@@ -27,5 +27,3 @@ while a == "y" or a == "Y":
         print("get outta here!")
         break
     
-
-test='test'
