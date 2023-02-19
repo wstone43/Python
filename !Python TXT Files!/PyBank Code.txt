@@ -1,0 +1,23 @@
+import csv
+with open('budget_data.csv') as File:  
+    reader = csv.reader(File)
+    for row in reader:
+        print(row)
+
+with open(reader) as f:
+    sum(1 for line in f)
+print (sum)
+
+-----------------------------------------------
+
+import csv
+
+with open('budget_data.csv') as f:  
+    reader = csv.reader(f,delimiter = ",")
+    data = list(reader)
+    row_count = len(data)
+
+
+
+
+print (row_count)

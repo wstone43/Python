@@ -1,0 +1,13 @@
+As an analyst for the Citi Bike Program, I reviewed rider data for the months of August 2017 to August 2018. In order t aggregat this data, 
+I downloaded the CSV files for each month (8/2017 - 8/2018) and then used the Pandas package in Python to merge each of 
+the CSV files into one master CSV file. once this was completed, I was able to upload this master CSV file to Tableau to create 
+the visuals that complement my below analysis
+
+It is clear that users are generally ones who subscribe to the program, but it cannot be said if riders prefer 
+to use our biked only once they have a sibscritption or if those who use it as one-tine customers do so only because
+they do not ride frequently enought to justify paying for a subscription. riders are spread out throughly through 
+New York and New Jersey, but we do not see much activity/ridership in Brooklyn. RIders clearly prefer to ride in the summer months, 
+and prefer the morning and afternoon commute hours during the summer and the winter times. this is just a snapshot for my first 
+analysis as a data analyst for the Citi Bike Program. I would recommend looking deeper into the preferences of riders in Broolyn 
+so that we can get a better grasp of how to increase ridership in that area. also, I would consider analyzing how to encourage riders 
+to to try our service so that we can increase single-ride customer base (as opposed to those that have a subscription) 

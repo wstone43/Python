@@ -1,0 +1,14 @@
+csv = os.path.join(excel.csv)
+
+
+
+import os
+cvsimport pandas as pd
+
+---------------------------------
+
+csv = 
+
+df = pd.read_csv(csv)
+
+df.to_html("data.html", index = False, classes = ["table", "table-striped"])

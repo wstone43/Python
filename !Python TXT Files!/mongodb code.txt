@@ -1,0 +1,15 @@
+# Create Engine and connection to Database
+    # engine = create_engine('postgres://postgres:PASSWORD@localhost:5432/Bechdel_Test')
+    # conn = engine.connect()
+
+conn = 'mongodb://localhost:27017'
+client = pm.MongoClient(conn)
+
+db = client.Project2
+collection = db.equityinhollywood
+
+cursor = db.inventory.find( {} )
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+https://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html

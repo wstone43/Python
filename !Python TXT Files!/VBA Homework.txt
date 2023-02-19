@@ -1,0 +1,58 @@
+Sub Stock_volume()
+
+Dim lastrow As String
+Dim ticker As String
+Dim volume As Double
+Dim Stock_volume As Integer
+Dim all_worksheets As Integer
+  
+  volume = 0
+  Stock_volume = 1
+
+all_worksheets = ActiveWorkbook.Worksheets.Count
+
+lastrow = Cells(Rows.Count, "a").End(xlUp).Row
+    
+    ActiveSheet.Range("a2:a" & lastrow).AdvancedFilter _
+    Action:=xlFilterCopy, _
+    CopyToRange:=ActiveSheet.Range("k2"), _
+    Unique:=True
+    
+Cells(1, 12) = "Volume"
+
+  For i = 2 To 70962
+
+
+If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+    volume = volume + Cells(i, 7).Value
+    Range("l" & Stock_volume).Value = volume
+
+      Stock_volume = Stock_volume + 1
+      
+      
+    volume = 0
+
+Else
+
+      volume = volume + Cells(i, 7).Value
+
+    End If
+
+  Next i
+
+End Sub
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sub Finance()
+
+For Each ws In Worksheets
+
+Dim ticker As String
+
+LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+WorksheetName = ws.Name
+
+
+End Sub

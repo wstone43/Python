@@ -1,0 +1,3 @@
+hey- I have a way that we can use my computer and tie in the MongoDB via html if you would be interested in going that route:
+
+https://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html

@@ -1,0 +1,111 @@
+Sub Stock_volume()
+
+For Each ws In worksheets
+
+Dim sheetname As String
+Dim lastrow As String
+Dim ticker As String
+Dim volume As Double
+Dim Stock_volume As Integer
+ 
+
+        ws.Cells(1, 11).Value = "Ticker"
+        ws.Cells(1, 12).Value = "Total Volume"
+        
+        volume = 0
+        Stock_volume = 1
+
+all_worksheets = ActiveWorkbook.worksheets.Count
+
+lastrow = Cells(Rows.Count, "a").End(xlUp).Row
+    
+    ActiveSheet.Range("a2:a" & lastrow).AdvancedFilter _
+    Action:=xlFilterCopy, _
+    CopyToRange:=ActiveSheet.Range("k2"), _
+    Unique:=True
+    
+Cells(1, 12) = "Volume"
+
+  For i = 2 To 70962
+
+
+If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+    volume = volume + Cells(i, 7).Value
+    Range("l" & Stock_volume).Value = volume
+
+      Stock_volume = Stock_volume + 1
+      
+      
+    volume = 0
+
+Else
+
+      volume = volume + Cells(i, 7).Value
+
+    End If
+
+  Next i
+  
+Next ws
+
+End Sub
+
+------------------------------------------------------------------------------------------
+
+with open('financial_analysis.txt', 'w') as text:
+    
+    text.write("  Financial Analysis"+ "\n")
+    text.write("--------------------------------------------------")
+    text.write("    Total Months: " + str(count) + "\n")
+    text.write("    Total Profits: " + "$" + str(total_profit) +"\n")
+    text.write("    Average Change: " + '$' + str(int(average_change_profits))+ "\n")
+    text.write("    Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_increase_profits) + ")\n")
+    text.write("    Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_decrease_profits) + ")\n")
+
+--------------------------------------------------------------------------------------------
+
+
+Sub StockData()
+ 
+Dim WS As Worksheet
+    For Each WS In ActiveWorkbook.worksheets
+    WS.Activate
+
+        lastrow = WS.Cells(Rows.Count, 1).End(xlUp).Row
+
+        Cells(1, "I").Value = "Ticker"
+        Cells(1, "J").Value = "Total Stock Volume"
+        Columns("j").ColumnWidth = 18
+
+        Dim Ticker_Name As String
+        Dim Volume As Double
+        Volume = 0
+        Dim Row As Double
+        Row = 2
+        Dim Column As Integer
+        Column = 1
+        
+        
+        For i = 2 To lastrow
+         
+            If Cells(i + 1, Column).Value <> Cells(i, Column).Value Then
+                
+                Ticker_Name = Cells(i, Column).Value
+                Cells(Row, Column + 8).Value = Ticker_Name
+                
+                Volume = Volume + Cells(i, Column + 6).Value
+                Cells(Row, Column + 9).Value = Volume
+                
+                Row = Row + 1
+                Volume = 0
+            
+            Else
+                Volume = Volume + Cells(i, Column + 6).Value
+            End If
+        Next i
+        
+        
+    Next WS
+        
+End Sub
+

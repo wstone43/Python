@@ -1,0 +1,7 @@
+plt.scatter(weather_dataframe["Lat"],weather_dataframe["Max Temp"],edgecolors="black",facecolors="skyblue")
+plt.title("City Latitude vs. Max Temperature (08/07/19)")
+plt.xlabel("Latitude")
+plt.ylabel("Max Temperature (F)")
+plt.grid (b=True,which="major",axis="both",linestyle="-",color="lightgrey")
+plt.savefig("Figures/fig1.png")
+plt.show()

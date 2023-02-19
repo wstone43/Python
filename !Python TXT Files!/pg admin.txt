@@ -1,0 +1,20 @@
+create table people (
+			 name varchar(30) not null,
+			 has_pet Boolean Default false,
+			 pet_type varchar(10) not null,
+			 pet_name varchar(30),
+			 pet_age int 
+);
+select * from people;
+
+insert into people (name, has_pet, pet_type, pet_name, pet_age)
+values('jacob', true,'dog','misty',10),
+	('ahmad', true,'rock','rockington',100),
+	('peter', true, 'cat','franklin',2),
+	('dave', true,'dog','queso',1),
+	('dave', true,'cat','catty',1);
+select * from people;
+
+select pet_name from people;
+
+oc2 1010 

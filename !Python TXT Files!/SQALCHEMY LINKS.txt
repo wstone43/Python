@@ -1,0 +1,7 @@
+SQALCHEMY LINKS
+
+https://github.com/cantugabriela/Surf-Weather-Analysis/blob/master/climate_analysis.ipynb
+
+https://github.com/bigbluey/Surfs-Up/blob/master/Climate%20Analysis.ipynb
+
+https://github.com/matthewrberning/MRB-Advanced-Data-Storage-and-Retrieval/blob/master/climate_starter.ipynb

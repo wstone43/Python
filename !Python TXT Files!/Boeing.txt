@@ -1,0 +1,21 @@
+print("Welcome Capitan!")
+
+mylist = ("747", "737", "757", "777")
+
+firstclass = input("how many first class passengers do you have?")
+coach = input("how many coach passengers do you have?")
+flightrange = input("what is the distance you are flying?")
+
+
+pax = int(firstclass) + int(coach)
+flightrange= int(flightrange)
+
+if (pax < 100) and (flightrange < 3000):
+    print(mylist[1])
+if (pax >= 100) and (pax < 200) and (flightrange >=3000) and (flightrange < 7000):
+    print(mylist[3])
+if (pax >= 200) and (flightrange >= 7000 ) and ((flightrange < 9500 )):
+    print(mylist[0])
+
+else:
+    print("No Applicable Equipment")

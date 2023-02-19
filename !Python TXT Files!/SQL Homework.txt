@@ -1,0 +1,22 @@
+CREATE TABLE departments (
+	dept_no char(20) PRIMARY KEY,
+	dept_name VARCHAR
+);
+
+CREATE TABLE dept_emp (
+	emp_no int,
+	Foreign Key (emp_no) references employees(emp_no),
+	dept_no varchar(20),
+	foreign key (dept_no) references departments(dept_no),
+	from_date date NOT NULL,
+	to_date date NOT NULL
+);
+
+CREATE TABLE dept_manager (
+	dept_no varchar(20),
+	Foreign Key (dept_no) references departments(dept_no),
+	emp_no int,
+	Foreign  key (emp_no) references employees(emp_no),
+	from_date date NOT NULL,
+	to_date date NOT NULL
+);

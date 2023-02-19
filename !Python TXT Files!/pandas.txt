@@ -1,0 +1,6 @@
+import csv
+import pandas as pd
+
+csv = (/documents/Roster.csv)
+
+Roster_df = 

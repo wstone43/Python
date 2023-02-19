@@ -1,0 +1,8 @@
+PROJECTS/PRACTICE TO-DO:
+
+
+-Finish "fleet" shopping list (test321)
+
+-Improve AVION (file)
+
+-Multiple variables (test321)
