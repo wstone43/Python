@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.arange(-100, 100, 1)
+x = (np.arange(-100, 100, 1))
 
 a = float(input("select an integer for 'a': "))
 b = float(input("select an integer for 'b': "))
@@ -47,4 +47,8 @@ plt.grid()
 plt.plot(y)
 plt.plot(tangent1)
 plt.show()
+
+# TEST
+# TEST
+
 
