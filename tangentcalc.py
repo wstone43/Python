@@ -1,3 +1,5 @@
+# //function for caulculating & graphing a line tangent to assigned function// 
+
 import numpy as np
 import matplotlib.pyplot as plt
 
