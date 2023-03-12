@@ -18,30 +18,25 @@ set['C_Avg'] = set.iloc[:, 1:5].mean(axis=1)
 print(set)
 
 code = set.loc[:,'Country Code']
-ten = set.loc[:, '2010']
-ele = set.loc[:, '2011']
-twe = set.loc[:, '2012']
-thi = set.loc[:, '2013']
-fou = set.loc[:, '2014']
+ten = set.loc[:, '2010'].describe()
+ele = set.loc[:, '2011'].describe()
+twe = set.loc[:, '2012'].describe()
+thi = set.loc[:, '2013'].describe()
+fou = set.loc[:, '2014'].describe()
 des =set.loc[:, 'C_Avg']
 
 desmean = des.mean()
 desmed = des.median()
 desmode = des.mode()
 
-desc10 = ten.describe()
-desc11 = ele.describe()
-desc12 = twe.describe()
-desc13 = thi.describe()
-desc14 = fou.describe()
-des_C =  des.describe()
 
-print(desc10)
-print(desc11)
-print(desc12)
-print(desc13)
-print(desc14)
-print(des_C )
+print(code)
+print(ten)
+print(ele)
+print(twe)
+print(thi)
+print(fou)
+print(des)
 
 print('Country Mean: ', desmean)
 print('Country Median: ', desmed)
