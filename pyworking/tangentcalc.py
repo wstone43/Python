@@ -46,6 +46,6 @@ plt.ylim(-500,500,50)
 plt.grid()
 plt.plot(y)
 plt.plot(tangent1)
-plt.show(())
+plt.show()
 
 
