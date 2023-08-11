@@ -61,7 +61,7 @@ end_dates = models.index[1:].append(pd.to_datetime(['2099-12-31']))
 
 predictions = pd.Series(index=features.index)
 
-for i,model in enumerate(models): #loop thru each models object in collection
+for i,model in enumerate(models): 
     X = features.iloc[0:3182]
     p = pd.Series(model.predict(X),index=X.index)
     predictions.loc[X.index] = p

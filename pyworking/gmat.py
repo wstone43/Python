@@ -145,31 +145,31 @@ else:
 
 
 
-import numpy as np
+# import numpy as np
 
-lim = int(input('Select matrix dimension: '))
-res1=[];res2=[];dump1=[];dump2=[]
+# lim = int(input('Select matrix dimension: '))
+# res1=[];res2=[];dump1=[];dump2=[]
 
-x = np.arange(-lim,lim,.1)
-y = np.arange(-lim,lim,.1)
+# x = np.arange(-lim,lim,.1)
+# y = np.arange(-lim,lim,.1)
 
-def jumper(disco,rifle):
-    for ranger in disco:
-        if ranger > 0:
-            res1.append(ranger)
-        else:
-            dump1.append(ranger)
-    for ranger in rifle:
-        if ranger > 0:
-            res2.append(ranger)
-        else:
-            dump2.append(ranger)
-    if len(dump1) or len(dump2) > 0:
-        print('Condition 1 and/or condition 2 are < 0')
-    else:
-        print('condition 1 or 2 are true')
+# def jumper(disco,rifle):
+#     for ranger in disco:
+#         if ranger > 0:
+#             res1.append(ranger)
+#         else:
+#             dump1.append(ranger)
+#     for ranger in rifle:
+#         if ranger > 0:
+#             res2.append(ranger)
+#         else:
+#             dump2.append(ranger)
+#     if len(dump1) or len(dump2) > 0:
+#         print('Condition 1 and/or condition 2 are < 0')
+#     else:
+#         print('condition 1 or 2 are true')
 
-(jumper((x-y),(x**2-y**2)))
+# (jumper((x-y),(x**2-y**2)))
 
 
 
