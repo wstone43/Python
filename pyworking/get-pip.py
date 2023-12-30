@@ -42,6 +42,7 @@ try:
 except ImportError:
     _b85alphabet = (b"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     b"abcdefghijklmnopqrstuvwxyz!#$%&()*+-;<=>?@^_`{|}~")
+    
 
     def b85decode(b):
         _b85dec = [None] * 256

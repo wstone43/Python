@@ -19,9 +19,9 @@ y_vert_round = round(y_vert,3)
 print("Your discriminant equals: ",x_vert_round)
 print(f'your vertex is:',x_vert_round,',',y_vert_round)
 
-plt.ylim(-500,500,10)
-plt.grid()
-plt.plot(x,y)
+plt.ylim(-50,50)
+plt.xlim(-50,50)
+plt.plot(y)
 plt.show()
 
 

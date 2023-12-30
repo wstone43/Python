@@ -20,3 +20,4 @@ for dist in dists:
             print("-"*40)
     except OSError:
         '{} no longer exists'.format(dist.project_name)
+        

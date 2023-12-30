@@ -415,14 +415,6 @@
 #             for dirname in dirnames:
 #                 if dirname == "__pycache__":
 #                     shutil.rmtree(os.path.join(dirpath, dirname))
-
-
-# # Custom build_ext command to set OpenMP compile flags depending on os and
-# # compiler. Also makes it possible to set the parallelism level via
-# # and environment variable (useful for the wheel building CI).
-# # build_ext has to be imported after setuptools
-
-
 # class build_ext_subclass(build_ext):
 #     def finalize_options(self):
 #         build_ext.finalize_options(self)
@@ -1005,82 +997,307 @@
 # plt.scatter(X, y)
 # plt.show()
 
-#////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import pandas as pd 
-import numpy as np
+# import pandas as pd 
+# import numpy as np
 
-file1 = 'c:/users/wston/documents/python/pybuild/TSLA.csv'
+# file1 = 'c:/users/wston/documents/python/pybuild/TSLA.csv'
 
-jump = pd.read_csv(file1)
-datetime_series = pd.DatetimeIndex(jump['Date'])
-datetime_series
-jump = jump.set_index(datetime_series)
-jump
-jump.to_csv('c:/users/wston/documents/stock_data.csv')
+# jump = pd.read_csv(file1)
+# datetime_series = pd.DatetimeIndex(jump['Date'])
+# datetime_series
+# jump = jump.set_index(datetime_series)
+# jump
+# jump.to_csv('c:/users/wston/documents/stock_data.csv')
 
-num_obs = jump[['Close']].count()
-num_obs
+# num_obs = jump[['Close']].count()
+# num_obs
 
 
-def add_memory(s,n_days=50,mem_strength=0.1):
-    ''' adds autoregressive behavior to series of data'''
-    add_ewm = lambda x: (1-mem_strength)*x + mem_strength*x.ewm(n_days).mean()
-    out = s.groupby(level='Date').apply(add_ewm)
-    return out
+# def add_memory(s,n_days=50,mem_strength=0.1):
+#     ''' adds autoregressive behavior to series of data'''
+#     add_ewm = lambda x: (1-mem_strength)*x + mem_strength*x.ewm(n_days).mean()
+#     out = s.groupby(level='Date').apply(add_ewm)
+#     return out
 
-# generate feature data
-f01 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
-f01 = add_memory(f01,10,0.1)
-f02 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
-f02 = add_memory(f02,10,0.1)
-f03 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
-f03 = add_memory(f03,10,0.1)
-f04 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
-f04 = f04 # no memory
+# # generate feature data
+# f01 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
+# f01 = add_memory(f01,10,0.1)
+# f02 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
+# f02 = add_memory(f02,10,0.1)
+# f03 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
+# f03 = add_memory(f03,10,0.1)
+# f04 = pd.Series(np.random.randn(3182),index=jump[['Close']].index)
+# f04 = f04 # no memory
 
-features = pd.concat([f01,f02,f03,f04],axis=1)
-features.to_csv('c:/users/wston/documents/jump_data.csv')
+# features = pd.concat([f01,f02,f03,f04],axis=1)
+# features.to_csv('c:/users/wston/documents/jump_data.csv')
 
-# dim_feat=features.ndim
-# dim_feat
+# # dim_feat=features.ndim
+# # dim_feat
 
-# now, create response variable such that it is related to features
-# f01 becomes increasingly important, f02 becomes decreasingly important,
-# f03 oscillates in importance, f04 is stationary, and finally a noise component is added
+# # now, create response variable such that it is related to features
+# # f01 becomes increasingly important, f02 becomes decreasingly important,
+# # f03 oscillates in importance, f04 is stationary, and finally a noise component is added
 
-outcome =   f01 * np.linspace(0.5,1.5,3182) + \
-            f02 * np.linspace(1.5,0.5,3182) + \
-            f03 * pd.Series(np.sin(2*np.pi*np.linspace(0,1,3182)*2)+1,index=f03.index) + \
-            f04 + \
-            np.random.randn(3182) * 3 
-outcome.name = 'outcome'
-outcome
+# outcome =   f01 * np.linspace(0.5,1.5,3182) + \
+#             f02 * np.linspace(1.5,0.5,3182) + \
+#             f03 * pd.Series(np.sin(2*np.pi*np.linspace(0,1,3182)*2)+1,index=f03.index) + \
+#             f04 + \
+#             np.random.randn(3182) * 3 
+# outcome.name = 'outcome'
+# outcome
 
-from sklearn.linear_model import LinearRegression
-from itertools import chain
+# from sklearn.linear_model import LinearRegression
+# from itertools import chain
 
-recalc_dates = features.resample('D',level='Date').mean().values[:-1]
-# print('init', str(recalc_dates))
+# recalc_dates = features.resample('D',level='Date').mean().values[:-1]
+# # print('init', str(recalc_dates))
 
-flat = list(chain.from_iterable(recalc_dates))
-print(flat)
-recalc_dates = pd.Series(flat)
-models = pd.Series(index=recalc_dates)
-for date in recalc_dates:
-    X_train = features.iloc[0:3182]
-    y_train = outcome.iloc[0:3182]
-    model = LinearRegression()
-    model.fit(X_train,y_train)
-    models.loc[date] = model
+# flat = list(chain.from_iterable(recalc_dates))
+# print(flat)
+# recalc_dates = pd.Series(flat)
+# models = pd.Series(index=recalc_dates)
+# for date in recalc_dates:
+#     X_train = features.iloc[0:3182]
+#     y_train = outcome.iloc[0:3182]
+#     model = LinearRegression()
+#     model.fit(X_train,y_train)
+#     models.loc[date] = model
 
-## predict values walk-forward (all predictions out of sample)
-begin_dates = models.index
-end_dates = models.index[1:].append(pd.to_datetime(['2099-12-31']))
+# ## predict values walk-forward (all predictions out of sample)
+# begin_dates = models.index
+# end_dates = models.index[1:].append(pd.to_datetime(['2099-12-31']))
 
-predictions = pd.Series(index=features.index)
+# predictions = pd.Series(index=features.index)
 
-for i,model in enumerate(models): #loop thru each models object in collection
-    X = features.iloc[0:3182]
-    p = pd.Series(model.predict(X),index=X.index)
-    predictions.loc[X.index] = p
+# for i,model in enumerate(models): #loop thru each models object in collection
+#     X = features.iloc[0:3182]
+#     p = pd.Series(model.predict(X),index=X.index)
+#     predictions.loc[X.index] = p
+
+# import requests
+# import pandas as pd
+# from matplotlib import pyplot
+# import json
+# from io import StringIO
+# import csv
+# from pandas.io.json._normalize import nested_to_record
+
+# url = "https://adsbx-flight-sim-traffic.p.rapidapi.com/api/aircraft/json/lat/34/lon/-118/dist/25/"
+
+# headers = {
+# 	"X-RapidAPI-Key": "17cfbd75c8msh8a987bddd60af14p196a57jsnc55bffd7088b",
+# 	"X-RapidAPI-Host": "adsbx-flight-sim-traffic.p.rapidapi.com"
+# }
+
+# response = requests.get(url, headers=headers)
+
+# def jprint(obj):
+#     # create a formatted string of the Python JSON object
+#     text = json.dumps(obj, sort_keys=True, indent=4)
+#     print(text)
+    
+# jprint = jprint(response.json())
+
+# json_data = json.loads(response.content)
+
+# pd.options.display.max_columns = None
+# pd.options.display.max_colwidth = None
+# pd.options.display.max_rows = True
+# pd.reset_option('display.max_rows')
+# pd.set_option('display.max_rows', 500)
+
+# df = pd.DataFrame(json_data)
+# df = pd.json_normalize(json_data, record_path='ac') 
+
+# df=df.head()
+
+# print(df)
+
+# import json 
+# import requests
+# import pandas as pd
+
+# url = "https://alpha-vantage.p.rapidapi.com/query"
+
+# querystring = {"interval":"5min","function":"TIME_SERIES_INTRADAY","symbol":"MSFT","datatype":"json","output_size":"compact"}
+
+# headers = {
+# 	"X-RapidAPI-Key": "17cfbd75c8msh8a987bddd60af14p196a57jsnc55bffd7088b",
+# 	"X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com"
+# }
+
+# response = requests.get(url, headers=headers, params=querystring)
+
+# print(response.json())
+
+# def jprint(obj):
+#     # create a formatted string of the Python JSON object
+#     text = json.dumps(obj, sort_keys=True, indent=4)
+#     print(text)
+    
+# jprint = jprint(response.json())
+
+# json_data = json.loads(response.content)
+
+# pd.reset_option('display.max_rows')
+# pd.options.display.max_columns = None
+# pd.options.display.max_colwidth = None
+# pd.options.display.max_rows = True
+# pd.set_option('display.max_rows', 500)
+
+# df = pd.DataFrame(json_data)
+# df = pd.json_normalize(json_data, record_path='Meta Data') 
+
+# print(df.head())
+
+# ///////////////////////////////////////////////////////////////////////////////////////////////
+
+# import requests
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# from pandas.io.json._normalize import nested_to_record
+
+# url = "https://alpha-vantage.p.rapidapi.com/query"
+
+# querystring = {"symbol":"VIX","function":"TIME_SERIES_MONTHLY","datatype":"json"}
+
+# headers = {
+# 	"X-RapidAPI-Key": "17cfbd75c8msh8a987bddd60af14p196a57jsnc55bffd7088b",
+# 	"X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com"
+# }
+
+# response = requests.get(url, headers=headers, params=querystring).json()
+
+# profile=[]
+
+# mts = response['Monthly Time Series']
+
+# for i, k in mts.items():
+#      profile.append(
+#     	{
+#             'Date':i,
+#            	'Price':k['4. close']
+#         }
+#     )
+    
+# df = pd.DataFrame(profile)
+
+# df['Date'] = pd.to_datetime(df["Date"])
+# df["Price"] = df['Price'].astype(float)
+# df["Price"].astype(int)
+
+# plt.plot(df['Date'],df['Price'])
+# plt.show()
+
+# ///////////////////////////////////////////////////////////////////////////////////////////////
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import os 
+import csv
+from datetime import datetime
+import numpy as np  
+
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 10)
+pd.set_option('display.width', 1000)
+
+tsla = 'c:/Users/wston/Documents/tsla_full.csv'
+vix = 'c:/users/wston/Documents/vix_History.csv'
+tsla1 = 'c:/users/wston/Documents/tsla1.csv'
+vix1 = 'c:/users/wston/Documents/vix1.csv'
+
+tsla_prof={'Date':[],'Close':[]}
+vix_prof={'Date':[],'Close':[]}
+
+with open(tsla, newline='') as tsla_read:
+    tsla_reader = csv.reader(tsla_read, delimiter=',')
+
+    tsla_header = next(tsla_reader)
+    print(f"CSV Header: {tsla_header[0::1]}")
+
+    with open(tsla1, mode='w') as tsla_out:
+        tsla_writer = csv.writer(tsla_out)
+        tsla_prof = {jump[0]:jump[1] for jump in tsla_reader}
+
+        for i,k in tsla_reader:
+            tsla_prof['Date'].append(
+    	        {
+                    (i[0:]),
+                    
+                }
+        )  
+            tsla_prof['Close'].append(
+                {
+                    (k[::1])
+                    
+                }
+                    
+        ) 
+
+t_chunklen = 1
+t_list = list(tsla_prof.items())
+td = [dict(t_list[i:i + t_chunklen]) for i in range(0, len(t_list), t_chunklen)]
+
+
+with open(vix, newline='') as vix_read:
+    vix_reader = csv.reader(vix_read, delimiter=',') 
+
+    vix_header = next(vix_reader)
+    print(f"CSV Header: {vix_header[0::1]}")
+
+    with open(vix1, mode='w') as vix_out:
+        vix_writer = csv.writer(vix_out)
+        vix_prof = {roll[0]:roll[1] for roll in vix_reader}
+
+        for x,y in vix_reader:
+            vix_prof['Date'].append(
+    	        {
+                    (x[0:]),
+                    
+                }
+        )  
+            vix_prof['Close'].append(
+                {
+                    (y[::1])
+                    
+                }
+        ) 
+        
+v_chunklen = 1
+v_list = list(vix_prof.items())
+vd = [dict(v_list[l:l + v_chunklen]) for l in range(0, len(v_list), v_chunklen)]
+
+
+t_df = pd.DataFrame(t_list)
+v_df = pd.DataFrame(v_list)
+
+t_df.columns = ['Date', 'Close']
+v_df.columns = ['Date', 'Close']
+
+t_df['Date'] = pd.to_datetime(t_df["Date"])
+t_df['Close'] = t_df['Close'].astype(float)
+t_df['Close'].astype(int)
+
+v_df['Date'] = pd.to_datetime(v_df["Date"])
+v_df['Close'] = v_df['Close'].astype(float)
+v_df['Close'].astype(int)
+ 
+t_df.set_index('Date', inplace=True)
+v_df.set_index('Date', inplace=True)
+
+t_df['Delta'] = np.log(t_df['Close'].div(t_df['Close'].shift()))
+t_delta = t_df.dropna(subset=['Delta'])
+
+v_df['Delta'] = np.log(v_df['Close'].div(v_df['Close'].shift()))
+v_delta = v_df.dropna(subset=['Delta'])
+
+m_delta = pd.merge(t_delta['Delta'],v_delta['Delta'],how='inner',left_index=True,right_index=True)
+m_delta
+
+bingo = plt.plot(m_delta.index,m_delta['Delta_x'],m_delta['Delta_y'])
+plt.legend(iter(bingo),('TSLA', 'VIX'))
+plt.show()

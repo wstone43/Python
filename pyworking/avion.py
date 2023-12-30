@@ -2,11 +2,11 @@ import os
 import sys
 
 
-wslist = os.path.join('C:\\Users\\wston\\Documents\\pythonwp',"wslist.txt")
+# wslist = os.path.join('C:\\Users\\wston\\Documents\\pythonwp',"wslist.txt")
 
-with open(wslist) as f:
-    roster = f.read()
-    print(roster) 
+# with open(wslist) as f:
+#     roster = f.read()
+#     print(roster) 
 
 pilots = ("Tony Soprano", "Paulie Walnutz", "Uncle Junior", "Silvio Dante", "Johnny Sacramoni", "Bobby Bacalieri")
 rank = (" ", "Capitan", "F/O", "Reserve Capitan", "Reserve F/O")

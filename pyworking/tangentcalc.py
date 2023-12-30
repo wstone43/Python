@@ -20,7 +20,6 @@ print(f'your vertex is:',x_vert_round,',',y_vert_round)
 
 prime = (((a*d)*(x**(e-1)))+b)
 slope = (((a*e)*(d**(e-1)))+b)
-tangent =(28*x)-35
 
 tan1=slope*x
 
@@ -42,12 +41,9 @@ print('m*x:',(slope*d))
 print('f(x):',y)
 print('tangent:',tangent1)
 
-plt.ylim(-500,500,50)
+plt.ylim(-50,50)
+plt.xlim(-50,50)
 plt.grid()
-plt.plot(y)
-plt.plot(tangent1)
+plt.plot(x,y)
+plt.plot(x,tangent1)
 plt.show()
-
-
-
-
